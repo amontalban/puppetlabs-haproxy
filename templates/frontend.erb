@@ -1,9 +1,10 @@
-listen <%= name %>
-  default_backend <%= default_backend %>
-<% Array(ipaddress).uniq.each do |virtual_ip| (ports.is_a?(Array) ? ports : Array(ports.split(","))).each do |port| -%>
+listen <%= @name %>
+  mode <%= @mode %>
+  default_backend <%= @default_backend %>
+<% Array(@ipaddress).uniq.each do |virtual_ip| (@ports.is_a?(Array) ? ports : Array(ports.split(","))).each do |port| -%>
   bind <%= virtual_ip %>:<%= port %>
 <% end end -%>
-<% options.sort.each do |key, val| -%>
+<% @options.sort.each do |key, val| -%>
 <% Array(val).each do |item| -%>
   <%= key %>  <%= item %>
 <% end -%>
